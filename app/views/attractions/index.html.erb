@@ -1,0 +1,6 @@
+<h3>Attractions</h3>
+<% @attractions.each do |attraction| %>
+  <li><%= link_to (@admin_status ? "Show ":"Go on ")+ "#{attraction.name}", attraction %></li>
+<% end %><br>
+
+<p><%= (link_to "New Attraction", new_attraction_path) if @admin_status %> | <%= link_to "Log Out", logout_path, id: "Log Out" %></p>

@@ -1,0 +1,12 @@
+<h3><%= @attraction.name %></h3>
+
+<%= (link_to "Edit Attraction", edit_attraction_path(@attraction)) if @user.admin %><br><br>
+
+<p>Tickets needed to ride: <%= @attraction.tickets %></p>
+<p>You currently have: <%= @user.tickets %> tickets</p><br>
+
+<%= form_tag(rides_path, method: "post") do %>
+  <%= hidden_field_tag(:user_id, @user.id) %>
+  <%= hidden_field_tag(:attraction_id, @attraction.id) %>
+  <%= submit_tag "Go on this ride" %>
+<% end %>
