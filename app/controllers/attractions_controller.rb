@@ -1,9 +1,9 @@
 class AttractionsController < ApplicationController
   before_action :set_attraction, only: [:show, :edit, :update]
+  before_action :set_user, only: [:index, :show]
 
   def index
     @attractions = Attraction.all
-    @admin_status = User.find_by(id: session[:user_id]).admin
   end
 
   def new
@@ -20,7 +20,6 @@ class AttractionsController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: session[:user_id])
   end
 
   def edit
@@ -39,5 +38,9 @@ class AttractionsController < ApplicationController
 
     def set_attraction
       @attraction = Attraction.find_by(id: params[:id])
+    end
+
+    def set_user
+      @user = User.find_by(id: session[:user_id])
     end
 end
